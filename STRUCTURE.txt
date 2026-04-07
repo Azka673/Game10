@@ -1,0 +1,20 @@
+CHRONO HUNTER — struktur folder (HTML + CSS + JavaScript)
+=========================================================
+
+Game cp 2/
+├── index.html          → Halaman utama (menu, loading, HUD, overlay game)
+├── style.css           → Tampilan HD, animasi UI, responsif mobile
+├── script.js           → Logika game (canvas, quest, quiz, ending, crafting)
+├── STRUCTURE.txt       → File ini (peta folder)
+├── data/
+│   ├── questions.json  → Cadangan data 10 soal (opsional; game pakai array di script.js)
+│   └── missions.json   → Cadangan data misi
+└── ui/
+    ├── menu.html       → Contoh potongan UI terpisah (opsional)
+    ├── loading.html    → Contoh loading terpisah (opsional)
+    └── ending.html     → Contoh ending terpisah (opsional)
+
+Cara menjalankan: buka index.html di browser (Chrome/Edge disarankan).
+Teknologi: HTML5, CSS3, JavaScript murni (tanpa build step).
+
+Catatan: File di folder ui/ adalah contoh modular; game utuh memakai index.html + script.js + style.css.

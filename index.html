@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Chrono Hunter: Praaksara Open World</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div id="loading-screen" class="overlay active">
+    <div class="loading-card">
+      <h1 id="loading-title" class="game-title-hd">CHRONO HUNTER</h1>
+      <p class="loading-subtitle">Praaksara Open World — Advanced Adventure</p>
+      <p id="loading-text" class="loading-typewriter"></p>
+      <div class="loading-bar"><div id="loading-progress"></div></div>
+      <div class="whirlpool whirlpool-center" aria-hidden="true"></div>
+      <div class="whirlpool whirlpool-bg" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <div id="main-menu" class="overlay hidden">
+    <div class="menu-card glass-panel">
+      <h1 class="game-title-hd">CHRONO HUNTER</h1>
+      <p class="menu-subtitle">Praaksara Open World Adventure</p>
+      <div class="menu-buttons">
+        <button id="start-btn" type="button">Mulai</button>
+        <button id="library-btn" type="button">Perpustakaan</button>
+        <button id="settings-btn" type="button">Pengaturan</button>
+      </div>
+      <p class="menu-note">Dialog &amp; teks penting muncul huruf demi huruf. Mobile: gunakan tombol di layar.</p>
+    </div>
+  </div>
+
+  <div id="library-menu" class="overlay hidden">
+    <div class="panel library-panel glass-panel scroll-panel">
+      <h2>Perpustakaan Praaksara</h2>
+      <p class="library-lead">Materi IPS kompleks — baca ringkas sebelum bermain.</p>
+
+      <div class="library-tabs" role="tablist">
+        <button type="button" class="lib-tab active" data-tab="era">Era &amp; Perubahan</button>
+        <button type="button" class="lib-tab" data-tab="alam">Manusia &amp; Alam</button>
+        <button type="button" class="lib-tab" data-tab="teknologi">Teknologi</button>
+        <button type="button" class="lib-tab" data-tab="soal">Pertanyaan Inti</button>
+        <button type="button" class="lib-tab" data-tab="tips">Strategi</button>
+      </div>
+
+      <div id="lib-era" class="library-pane active">
+        <div class="library-section">
+          <h3>Nomaden → Menetap</h3>
+          <p>Hasil bumi yang bisa diprediksi mendorong pemukiman. Stabilitas makanan mengubah ritme hidup.</p>
+        </div>
+        <div class="library-section">
+          <h3>Sebab–akibat</h3>
+          <p>Bertani → cadangan pangan → waktu untuk kerja lain → spesialisasi → struktur sosial lebih kompleks.</p>
+        </div>
+      </div>
+      <div id="lib-alam" class="library-pane">
+        <div class="library-section">
+          <h3>Membaca Alam</h3>
+          <p>Musim, air, dan hewan menjadi “peta” survival. Kesalahan membaca alam berarti risiko kelaparan.</p>
+        </div>
+        <div class="library-section">
+          <h3>Keseimbangan</h3>
+          <p>Manusia belajar membatasi eksploitasi agar sumber daya tetap ada musim berikutnya.</p>
+        </div>
+      </div>
+      <div id="lib-teknologi" class="library-pane">
+        <div class="library-section">
+          <h3>Batu → Logam</h3>
+          <p>Alat lebih tahan lama, pertanian &amp; pertahanan meningkat. Teknologi mempercepat perubahan sosial.</p>
+        </div>
+      </div>
+      <div id="lib-soal" class="library-pane">
+        <div class="library-section">
+          <h3>Pertanyaan untuk dipahami</h3>
+          <ul class="library-list">
+            <li>Mengapa manusia berpindah dari nomaden ke menetap?</li>
+            <li>Apa dampak bertani terhadap kehidupan sosial?</li>
+            <li>Kenapa logam mengubah kehidupan manusia?</li>
+          </ul>
+        </div>
+      </div>
+      <div id="lib-tips" class="library-pane">
+        <div class="library-section">
+          <h3>Di dalam game</h3>
+          <p>Tebang pohon / tambang batu dengan E (beberapa kali). Craft di F. Empat misi NPC + enam batu rune bercahaya = 10 soal tanpa ulang. Celah dimensi terbuka saat eksplorasi cukup; E dua kali untuk masuk.</p>
+        </div>
+      </div>
+
+      <button type="button" class="close-btn">Kembali</button>
+    </div>
+  </div>
+
+  <div id="settings-menu" class="overlay hidden">
+    <div class="panel glass-panel">
+      <h2>Pengaturan</h2>
+      <label class="setting-row">
+        <input type="checkbox" id="setting-sfx" checked> Suara &amp; efek (sederhana)
+      </label>
+      <label class="setting-row">
+        <input type="checkbox" id="setting-reduce-motion"> Kurangi animasi
+      </label>
+      <p class="settings-keys">WASD / panah = gerak · <strong>Shift</strong> = sprint · <strong>E</strong> = interaksi · <strong>G</strong> = inventory · <strong>F</strong> = crafting · <strong>Q</strong> = makan</p>
+      <p class="settings-keys">Mobile: tombol di layar + area sentuh.</p>
+      <button type="button" class="close-btn">Kembali</button>
+    </div>
+  </div>
+
+  <div id="whirlpool-transition" class="overlay hidden cinematic-overlay">
+    <div class="whirlpool-full" aria-hidden="true"></div>
+    <p id="whirlpool-caption" class="whirlpool-caption"></p>
+  </div>
+
+  <div id="intro-screen" class="overlay hidden">
+    <div class="panel intro-panel glass-panel">
+      <h2>Kebangkitan Kesadaran</h2>
+      <p id="intro-text" class="typewriter-block"></p>
+      <button id="intro-continue" type="button">Lanjutkan</button>
+    </div>
+  </div>
+
+  <div id="tutorial-overlay" class="overlay hidden">
+    <div class="panel glass-panel tutorial-card">
+      <h2>Tutorial Singkat</h2>
+      <p id="tutorial-text" class="typewriter-block"></p>
+      <button id="tutorial-close" type="button">Mengerti</button>
+    </div>
+  </div>
+
+  <div id="game-container" class="hidden">
+    <canvas id="gameCanvas" width="1000" height="600"></canvas>
+    <div id="hud" class="hud-hd">
+      <div class="status-column">
+        <div class="bar-group">
+          <span>HP</span>
+          <div class="status-bar bar-hd"><div id="health-fill" class="fill health"></div></div>
+        </div>
+        <div class="bar-group">
+          <span>Stamina</span>
+          <div class="status-bar bar-hd"><div id="stamina-fill" class="fill stamina"></div></div>
+        </div>
+        <div id="task-panel" class="task-panel-hd">
+          <h3>Tugas</h3>
+          <div id="task-list"></div>
+        </div>
+        <div class="bar-group">
+          <span>Hunger</span>
+          <div class="status-bar bar-hd"><div id="hunger-fill" class="fill hunger"></div></div>
+        </div>
+        <p class="hud-hint">Q = makan · Shift = sprint</p>
+      </div>
+      <div id="quick-info" class="quick-info-hd">
+        <span>Item: <span id="inventory-count">0</span></span>
+        <span>Soal: <span id="question-count">0/10</span></span>
+      </div>
+    </div>
+
+    <div id="eat-flash" class="eat-flash hidden" aria-hidden="true"></div>
+
+    <div id="mobile-controls" class="mobile-controls hidden">
+      <div class="control-pad">
+        <button type="button" class="control-button" data-input="w">↑</button>
+        <button type="button" class="control-button" data-input="a">←</button>
+        <button type="button" class="control-button" data-input="s">↓</button>
+        <button type="button" class="control-button" data-input="d">→</button>
+      </div>
+      <div class="action-buttons">
+        <button type="button" class="action-button" data-action="shift" title="Sprint">⚡</button>
+        <button type="button" class="action-button" data-action="q" title="Makan">🍖</button>
+        <button type="button" class="action-button" data-action="e">E</button>
+        <button type="button" class="action-button" data-action="g">G</button>
+        <button type="button" class="action-button" data-action="f">F</button>
+      </div>
+    </div>
+
+    <div id="dialog-overlay" class="overlay hidden">
+      <div class="dialog-card glass-panel">
+        <p id="dialog-text" class="typewriter-block"></p>
+        <button id="dialog-continue" type="button">Lanjut</button>
+      </div>
+    </div>
+
+    <div id="quiz-overlay" class="overlay hidden">
+      <div class="quiz-card glass-panel">
+        <h2>Quiz Praaksara</h2>
+        <p id="quiz-question"></p>
+        <div id="quiz-options"></div>
+      </div>
+    </div>
+
+    <div id="fact-overlay" class="overlay hidden">
+      <div class="fact-card glass-panel">
+        <h3 id="fact-heading">💡 Fakta Menarik</h3>
+        <p id="fact-text" class="typewriter-block"></p>
+      </div>
+    </div>
+
+    <div id="inventory-overlay" class="overlay hidden">
+      <div class="panel inventory-panel glass-panel">
+        <h2>Inventory</h2>
+        <div class="inventory-grid">
+          <div class="item">Kayu: <span id="wood-count">0</span></div>
+          <div class="item">Batu: <span id="stone-count">0</span></div>
+          <div class="item">Logam: <span id="metal-count">0</span></div>
+          <div class="item">Makanan: <span id="food-count">0</span></div>
+          <div class="item">Pedang: <span id="sword-status">Tidak</span></div>
+        </div>
+        <button type="button" class="close-btn">Tutup</button>
+      </div>
+    </div>
+
+    <div id="crafting-overlay" class="overlay hidden">
+      <div class="panel crafting-panel glass-panel">
+        <h2>Crafting</h2>
+        <div class="recipe">
+          <h3>Pedang Primitif</h3>
+          <p>Kayu 4 + Batu 2 → Pedang (VFX energi saat dipakai)</p>
+          <button type="button" id="craft-sword">Craft Pedang</button>
+        </div>
+        <div class="recipe">
+          <h3>Perkakas Batu</h3>
+          <p>Kayu 2 + Batu 3 → Kapak</p>
+          <button type="button" id="craft-tool">Craft Kapak</button>
+        </div>
+        <button type="button" class="close-btn">Tutup</button>
+      </div>
+    </div>
+
+    <div id="ending-overlay" class="overlay hidden cinematic-overlay">
+      <div class="ending-backdrop"></div>
+      <div class="ending-card glass-panel ending-cinematic">
+        <div class="ending-lens"></div>
+        <h1 id="ending-title" class="ending-title-anim"></h1>
+        <p id="ending-dialogue" class="typewriter-block ending-body"></p>
+        <p id="ending-conversation" class="ending-conversation typewriter-block"></p>
+        <button id="retry-btn" type="button">Ulangi</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
